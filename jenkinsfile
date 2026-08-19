@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo 'Code is already being checked out by Jenkins'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                bat 'docker build -t java-sample .'
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                bat 'docker rm -f java-container || exit 0'
+                bat 'docker run -d --name java-container java-sample'
+            }
+        }
+    }
+}
