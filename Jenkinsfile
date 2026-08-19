@@ -18,7 +18,7 @@ pipeline {
         stage('Run Container') {
             steps {
                 bat 'docker rm -f java-container || exit 0'
-                bat 'docker run -d --name java-container java-sample'
+                bat 'docker run --name java-container java-sample'
             }
         }
     }
